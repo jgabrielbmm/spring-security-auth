@@ -1,5 +1,7 @@
 package com.bentokoder.bentokoder.controllers;
 
+import com.bentokoder.bentokoder.dtos.LoginRequestDTO;
+import com.bentokoder.bentokoder.dtos.LoginResponseDTO;
 import com.bentokoder.bentokoder.dtos.RegisterDTO;
 import com.bentokoder.bentokoder.models.ApplicationUser;
 import com.bentokoder.bentokoder.services.AuthService;
@@ -21,5 +23,11 @@ public class AuthController {
     public ResponseEntity<ApplicationUser> register(@RequestBody RegisterDTO data){
         var user = this.authService.registerUser(data.username(), data.password());
         return ResponseEntity.ok().body(user);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponseDTO> loginUser(@RequestBody LoginRequestDTO data){
+        LoginResponseDTO response = authService.loginUser(data.username(), data.password());
+        return ResponseEntity.ok().body(response);
     }
 }
