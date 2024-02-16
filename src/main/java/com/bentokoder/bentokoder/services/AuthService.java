@@ -44,10 +44,8 @@ public class AuthService {
         authorities.add(userRole);
 
         var user = new ApplicationUser(null, username, encodedPassword, authorities);
-
-        userRepository.save(user);
-
-        return user;
+        var newUser = userRepository.save(user);
+        return newUser;
     }
 
 
@@ -56,7 +54,6 @@ public class AuthService {
             Authentication auth = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(username, password)
             );
-            System.out.println(auth.getName());
             String token = tokenService.generateJwt(auth);
 
             return new LoginResponseDTO(userRepository.findByUsername(username).get(), token);

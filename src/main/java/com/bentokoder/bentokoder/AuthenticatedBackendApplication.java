@@ -32,6 +32,7 @@ public class AuthenticatedBackendApplication {
 			Set<Role> roles = new HashSet<>();
 			roles.add(adminRole);
 
+
 			var admin = new ApplicationUser(1, "admin", encoder.encode("admin"), roles);
 			userRepository.save(admin);
 		};

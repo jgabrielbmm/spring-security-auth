@@ -25,6 +25,14 @@ public class Role implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        return null;
+        return this.authority;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "roleId=" + roleId +
+                ", authority='" + authority + '\'' +
+                '}';
     }
 }
